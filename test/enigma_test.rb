@@ -31,6 +31,18 @@ class EnigmaTest < Minitest::Test
     assert_equal "keder ohulw!", @enigma.encrypt("hello world!", "040895", "02715")
   end
 
+  def test_encrypt_with_no_date
+    skip
+    # expected = ? # TO DO
+    # assert_equal expected, @enigma.encrypt("hello world", "02715")
+  end
+
+  def test_encrypt_with_no_optional_args
+    skip
+    # expected = ? # TO DO
+    # assert_equal expected, @enigma.encrypt("hello world")
+  end
+
   def test_decrypt
     skip
     expected = {
@@ -39,8 +51,15 @@ class EnigmaTest < Minitest::Test
       date: "040895"
     }
 
-    assert_equal expected, @enigma.decrypt("keder ohulwd", "02715", "040895")
+    assert_equal expected, @enigma.decrypt("keder ohulw", "02715", "040895")
     # Enigma#decrypt(ciphertext, key, date)
     # The decrypt method takes a ciphertext String and the Key used for encryption as arguments. The decrypt method can optionally take a date as the third argument. If no date is given, this method should use today’s date for decryption.
+  end
+
+  def test_decrypt_with_todays_date
+    skip
+    encrypted = @enigma.encrypt("hello world", "02715")
+
+    assert_equal "hello world", @enigma.decrypt(encrypted[:encryption], "02715")[:decryption]
   end
 end
